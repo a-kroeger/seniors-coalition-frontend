@@ -72,7 +72,7 @@ nav {
 .MuiBreadcrumbs-root {
   background: none;
   position: relative;
-  top: 5.5px;
+  top: 3px;
 }
 .MuiBreadcrumbs-ol {
   flex-wrap: nowrap !important;
@@ -206,7 +206,7 @@ nav {
   border-radius: 30px;
   font-size: 1.6rem;
   transition: box-shadow 250ms linear;
-  width: 125px;
+  width: fit-content;
   white-space: nowrap;
 }
 .button:hover {
@@ -481,10 +481,7 @@ nav {
 
   /* Page Layout */
   .page-container {
-    padding: 15px;
-  }
-  .cover-img {
-    margin-top: 80px;
+    padding: 100px 15px 15px 15px;
   }
   .content-landing, .testimonials {
     flex-direction: column;
@@ -532,9 +529,7 @@ nav {
     margin: 0 0 15px 0;
     max-height: 250px;
   }
-  .button {
-    width: 125px;
-  }
+  
   /* Subcategory Layout */
   .subcategory h3 {
     white-space: normal;
