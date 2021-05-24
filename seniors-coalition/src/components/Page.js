@@ -79,13 +79,13 @@ export class Page extends Component {
                     {TestimonialOne && <h3 className="testimonial-header">Testimonials</h3>}
                     <div className="testimonials">
                         {TestimonialOne && <div className="testimonial">
-                            <ReactMarkdown source={TestimonialOne}  />  
+                            <ReactMarkdown children={TestimonialOne}  />  
                         </div>}
                         {TestimonialTwo && <div className="testimonial">
-                            <ReactMarkdown source={TestimonialTwo}  />   
+                            <ReactMarkdown children={TestimonialTwo}  />   
                         </div>}
                         {TestimonialThree && <div className="testimonial">
-                            <ReactMarkdown source={TestimonialThree}  />    
+                            <ReactMarkdown children={TestimonialThree}  />    
                         </div>}
                     </div>
                 </div>
