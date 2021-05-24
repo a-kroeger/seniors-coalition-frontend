@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import SubCategories from './components/SubCategories';
 import Items from './components/Items';
 import Page from './components/Page';
-import Events from './components/Events';
 import Error from './components/Error';
 import axios from 'axios';
 import './App.css';
@@ -151,16 +150,6 @@ class App extends Component {
                     theme={this.state.theme}
                   />
                 )} />
-            <Route exact path='/events'
-            render={props => (
-              <Events
-              {...props}
-              loading={this.state.loading}
-              links={this.state.categories}
-              keyColour={this.state.keyColour}
-              theme={this.state.theme}
-              />
-            )} />
             <Route exact path='/404'
             render={props => (
               <Error

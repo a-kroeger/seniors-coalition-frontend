@@ -197,6 +197,7 @@ nav {
   margin: 30px 30px 30px 0;
   position: relative;
   top: -11.5px;
+  overflow-wrap: break-word;
 }
 .button {
   text-decoration: none;
@@ -323,7 +324,6 @@ nav {
   display: flex;
   flex-direction: column;
   margin:  80px auto;
-  width: 80vw;
 }
 .testimonial-panel h3 {
   margin: 30px auto 0 auto;
@@ -365,7 +365,7 @@ nav {
   padding: 30px;
   margin: 30px;
   line-height: 1.7;
-  min-width: 30vw;
+  min-width: 240px;
   max-width: 700px;
 }
 .custom-block li {
