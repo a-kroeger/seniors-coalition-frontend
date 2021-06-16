@@ -93,31 +93,31 @@ export class Page extends Component {
                     {BlockOneTitle && BlockOneContent && 
                         <div className="custom-block">
                             <h4>{BlockOneTitle}</h4>
-                            <ReactMarkdown source={BlockOneContent} />
+                            <ReactMarkdown children={BlockOneContent} />
                         </div>
                     }
                     {BlockTwoTitle && BlockTwoContent && 
                         <div className="custom-block">
                             <h4>{BlockTwoTitle}</h4>
-                            <ReactMarkdown source={BlockTwoContent} />
+                            <ReactMarkdown children={BlockTwoContent} />
                         </div>
                     }
                     {BlockThreeTitle && BlockThreeContent && 
                         <div className="custom-block">
                             <h4>{BlockThreeTitle}</h4>
-                            <ReactMarkdown source={BlockThreeContent} />
+                            <ReactMarkdown children={BlockThreeContent} />
                         </div>
                     }
                     {BlockFourTitle && BlockFourContent && 
                         <div className="custom-block">
                             <h4>{BlockFourTitle}</h4>
-                            <ReactMarkdown source={BlockFourContent} />
+                            <ReactMarkdown children={BlockFourContent} />
                         </div>
                     }
                     {BlockFiveTitle && BlockFiveContent && 
                         <div className="custom-block">
                             <h4>{BlockFiveTitle}</h4>
-                            <ReactMarkdown source={BlockFiveContent} />
+                            <ReactMarkdown children={BlockFiveContent} />
                         </div>
                     }
                 
