@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 
@@ -12,7 +13,7 @@ function SubCategory(props) {
     return (
         <div className="subcategory">
             <h3>{title}</h3>
-            <p>{description}</p>
+            <ReactMarkdown children={description} />
             <Link
               style={{background: props.theme}}
               className="button"
