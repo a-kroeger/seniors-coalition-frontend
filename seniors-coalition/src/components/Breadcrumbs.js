@@ -19,7 +19,7 @@ const Breadcrumbs = props => {
   return (
     <MUIBreadcrumbs aria-label="breadcrumb">
         {pathnames.length > 0 ? 
-        <Link onClick={() => history.push("/")}>Home</Link>
+        <Link href="#" onClick={() => history.push("/")}>Home</Link>
         : <Typography>Home</Typography>
 
         }
@@ -29,7 +29,7 @@ const Breadcrumbs = props => {
           return isLast ? (
           <Typography> {name.replace(/-/g, " ")} </Typography>
           ) : (
-          <Link onClick={() => history.push(routeTo)}>{name.replace(/-/g, " ")}</Link>)
+          <Link href="#" onClick={() => history.push(routeTo)}>{name.replace(/-/g, " ")}</Link>)
           
       })}
     </MUIBreadcrumbs>
