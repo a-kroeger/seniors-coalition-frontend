@@ -37,7 +37,7 @@ export class Navbar extends Component {
               size:this.state.size+1  
              })
              
-             if (this.state.size === 1) {
+             if (this.state.size === 2) {
                 this.setState({
                     size: 0
                    })
@@ -48,11 +48,11 @@ export class Navbar extends Component {
 
         setFontSize(){
             switch(this.state.size){
-                default: document.body.style.fontSize="110%";
+                default: document.getElementById("primary-content").style.fontSize="110%";
                 break;
-                case 0: document.body.style.fontSize="130%";
+                case 0: document.getElementById("primary-content").style.fontSize="130%";
                 break;
-                case 1: document.body.style.fontSize="160%";
+                case 1: document.getElementById("primary-content").style.fontSize="160%";
             }
         }
 

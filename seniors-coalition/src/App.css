@@ -1,5 +1,8 @@
 body {
   font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 nav {
   display: flex;
@@ -138,18 +141,62 @@ nav {
   border-radius: 10px !important;
 }
 
+/* Homepage Banner */
+.banner {
+  padding: 130px 0;
+  display: flex;
+  margin: auto;
+  width: calc(75vw + 40px);
+}
+.banner > div{
+  margin: 20px;
+}
+h1.site-header {
+  margin: 0;
+}
+.col1 {
+  width: 70%;
+}
+.col2 {
+  border: 1px solid #707070;
+  padding: 20px;
+  width: 30%;
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+}
+.legend {
+  background: #fff !important;
+}
+p.legend, .legend a {
+  color: #000;
+}
+.banner-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.banner-text {
+  font-size: 1rem;
+}
+.about {
+  margin-bottom: 50px;
+}
+
 /* Tile layout */
 .tiles {
   display: grid;
-  padding-top: 140px;
   justify-content: center;
   grid-template-columns: 25vw 25vw 25vw;
   grid-gap: 20px;
+  margin-bottom: 200px;
 }
 .tile {
   display: flex;
   justify-content: center;
-  padding: 5vw;
+  text-align: center;
+  height: 12vw;
+  min-height: 110px;
+  align-items: center;
   cursor: pointer;
   font-size: 160%;
   color: #000;
@@ -220,17 +267,14 @@ nav {
 /* items */
 .item {
   display: flex;
-  margin-bottom: 10%;
+  margin-bottom: 180px;
   height: 230px;
 }
 .item h2 {
   margin: 0;
 }
-.item a {
-  position: relative;
-  top: 20px;
-}
 .module {
+  max-width: 60ch;
   overflow: hidden;
   display: -webkit-box;
   line-height: 2;
@@ -416,6 +460,42 @@ nav {
   color: #0075FE;
 }
 
+/* Footer */
+footer {
+  width: 100vw;
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+}
+.links {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 100vw;
+  background: linear-gradient(180deg, rgba(255,218,167,0) 20%, rgba(112,112,112,1) 100%);
+  padding: 50px 10px;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 25px 40px;
+}
+.link-grid a {
+  display: block;
+  /* margin: 0 20px 0 0; */
+  color: blue;
+  text-decoration: none;
+}
+.partners a img {
+  width: 120px;
+  margin: 8px;
+}
+.bottom {
+  background: #707070;
+  color: #fff;
+  font-size: 0.5rem;
+  padding: 15px 10px;
+}
+
 /* Error 404 Page */
 .error-body {
   text-align: center;
@@ -464,6 +544,10 @@ nav {
   }
   .font-adjust-icon p {
     display: none;
+  }
+  /* Banner */
+  .banner {
+    width: 90vw;
   }
 
   /* Items */
@@ -577,5 +661,21 @@ nav {
   }
   .MuiBreadcrumbs-root {
     top: 7px;
+  }
+  .banner {
+    flex-direction: column;
+  }
+  .col1, .col2 {
+    width: auto;
+  }
+  .links {
+    flex-direction: column;
+  }
+  .link-grid {
+    grid-template-columns: auto auto;
+    grid-gap: 28px 10px;
+  }
+  .partners {
+    margin-top: 50px;
   }
 }

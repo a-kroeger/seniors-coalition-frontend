@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import SubCategories from './components/SubCategories';
 import Items from './components/Items';
 import Page from './components/Page';
+import Footer from './components/Footer'
 import Error from './components/Error';
 import axios from 'axios';
 import './App.css';
@@ -137,6 +138,7 @@ class App extends Component {
           keyColour={this.state.keyColour}
           theme={this.state.theme}
         />
+        <body id="primary-content">
           <Switch>
             <Route exact path="/"
                render={props => (
@@ -196,6 +198,10 @@ class App extends Component {
                   />
                 )} />
             </Switch>
+            </body>
+          <Footer
+            loading={this.state.loading}
+          />
         </Router>
     </Fragment>
   )}
