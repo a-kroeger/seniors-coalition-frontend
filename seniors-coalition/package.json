@@ -1,5 +1,6 @@
 {
   "name": "seniors-coalition",
+  "homepage": "https://camroseseniorscoalition.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
