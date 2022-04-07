@@ -1,79 +1,87 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import LearnMoreIcon from './LearnMoreIcon';
 import Spinner from './Spinner';
 import { Helmet } from 'react-helmet'
 
-export class Page extends Component {
+export default function Page(props) {
 
-    componentDidMount () {
-        this.props.getPageContent(this.props.match.params.id);
-    };
+    const [data, setData] = useState({})
+    const [loading, setLoading] = useState(false)
 
-    render() {
-        const {
-            itemName,
-            longDescription,
-            supplementaryDescription,
-            imageGallery,
-            coverImage,
-            TestimonialOne,
-            TestimonialTwo,
-            TestimonialThree,
-            BlockOneTitle,
-            BlockOneContent,
-            BlockTwoTitle,
-            BlockTwoContent,
-            BlockThreeTitle,
-            BlockThreeContent,
-            BlockFourTitle,
-            BlockFourContent,
-            BlockFiveTitle,
-            BlockFiveContent,
+    useEffect(() => {
+        setLoading(true)
+        const { id } = props.match.params
+        axios.get(`https://seniors-coalition-admin.herokuapp.com/api/items?filters[id]=${id}&populate=*`)
+            .then(res => {
+                const { attributes } = res.data.data[0]
+                setData(attributes)
+                setLoading(false)
+            })
+    }, [])
 
-        } = this.props.page;
+    const {
+        ItemName,
+        LongDescription,
+        SupplementaryDescription,
+        ImageGallery,
+        CoverImage,
+        TestimonialOne,
+        TestimonialTwo,
+        TestimonialThree,
+        BlockOneTitle,
+        BlockOneContent,
+        BlockTwoTitle,
+        BlockTwoContent,
+        BlockThreeTitle,
+        BlockThreeContent,
+        BlockFourTitle,
+        BlockFourContent,
+        BlockFiveTitle,
+        BlockFiveContent,
 
-        const { loading } = this.props;
+    } = data;
 
-        if ( loading ) return <Spinner />;
+    if(loading === true) return <Spinner />
 
-        return (
+    return (
             <div className='page-container'>
                 <Helmet>
-                    <title>{(`${itemName} | Camrose, Alberta`)}</title>
-                    <meta name="description" content={longDescription}></meta>
+                    {ItemName && <title>{(`${ItemName} | Camrose, Alberta`)}</title>}
+                    {LongDescription && <meta name="description" content={LongDescription}></meta>}
                 </Helmet>
-                {coverImage && coverImage.url &&
-                    <img alt="" className="cover-img" src={coverImage.formats.large.url}>
+                {CoverImage && CoverImage.data !== null &&
+                    <img alt="" className="cover-img" src={CoverImage.data.attributes.formats.large.url}>
                 </img>}
-                <h1 className="page-title">{itemName}</h1>
+                <h1 className="page-title">{ItemName}</h1>
                 <div id="landing" className="content-landing">
-                    <p className="long-description">{longDescription}</p>
+                    <p className="long-description">{LongDescription}</p>
                     <AnchorLink offset='-110' href="#page-anchor" className="learn-more-btn">
                     <p>Scroll To <br></br>Learn More</p>
                         <div className="down-arrow">
-                            <LearnMoreIcon width={15} height={50} fill={this.props.theme}/>
-                            <LearnMoreIcon width={15} height={50} fill={this.props.theme}/>
+                            <LearnMoreIcon width={15} height={50} fill={props.theme}/>
+                            <LearnMoreIcon width={15} height={50} fill={props.theme}/>
                         </div>
                     </AnchorLink>
                 </div>
                 <div id="page-anchor"></div>
-                {imageGallery &&
+                {ImageGallery &&
                     <div className="gallery">
-                    {imageGallery[0] && imageGallery[0].url && 
-                        <img alt="" className="img hero" src={imageGallery[0].formats.large.url}>
+                    {ImageGallery.data && ImageGallery.data[0] && 
+                        <img alt="" className="img hero" src={ImageGallery.data[0].attributes.formats.small.url}>
                     </img>}
-                    {imageGallery[1] && imageGallery[1].url && 
-                        <img alt="" className="img supplementary" src={imageGallery[1].formats.small.url}>
+                    {ImageGallery.data && ImageGallery.data[1] && 
+                        <img alt="" className="img supplementary" src={ImageGallery.data[1].attributes.formats.small.url}>
                     </img>}
-                    {imageGallery[2] && imageGallery[2].url && 
-                        <img alt="" className="img supplementary" src={imageGallery[2].formats.small.url}>
+                    {ImageGallery.data && ImageGallery.data[2] &&  
+                        <img alt="" className="img supplementary" src={ImageGallery.data[2].attributes.formats.small.url}>
                     </img>}
                 </div>
                 }
-                {supplementaryDescription && <div className="supdesc">
-                <p>{supplementaryDescription}</p>    
+                {SupplementaryDescription && <div className="supdesc">
+                <p>{SupplementaryDescription}</p>    
                 </div>}
                 <div className="testimonial-panel">
                     {TestimonialOne && <h3 className="testimonial-header">Testimonials</h3>}
@@ -123,8 +131,5 @@ export class Page extends Component {
                 
                 </div>}
             </div>
-        )
-    }
+    )
 }
-
-export default Page

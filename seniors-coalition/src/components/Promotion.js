@@ -2,10 +2,10 @@ import React from 'react'
 
 function Promotion(props) {
 
-    const description = props.promotions.PromotionDescription
-    const logo = props.promotions.Logo.formats.thumbnail.url
-    const link = props.promotions.PromotionURL
-    const company = props.promotions.CompanyName
+    const description = props.promotions.attributes.PromotionDescription
+    const logo = props.promotions.attributes.Logo.data.attributes.formats.thumbnail.url
+    const link = props.promotions.attributes.PromotionURL
+    const company = props.promotions.attributes.CompanyName
     
     return (
         <div className="promotion">

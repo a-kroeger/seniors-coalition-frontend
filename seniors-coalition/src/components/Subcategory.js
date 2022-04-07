@@ -5,9 +5,9 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 function SubCategory(props) {
 
-    const title = props.subCategories.title
-    const description = props.subCategories.description
-    const subCategory = props.subCategories.url
+    const title = props.subCategories.attributes.Title
+    const description = props.subCategories.attributes.Description
+    const subCategory = props.subCategories.attributes.Url
     const { url } = useRouteMatch();
 
     return (

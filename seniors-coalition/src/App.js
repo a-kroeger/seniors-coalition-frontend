@@ -27,16 +27,16 @@ class App extends Component {
   // Get Tiles for Homepage
  async componentDidMount() {
    this.setState({ loading : true })
-   const res = await axios.get('https://seniors-coalition.herokuapp.com/tiles');
-   this.setState({ categories: res.data, loading: false });
+   const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
+   this.setState({ categories: res.data.data, loading: false });
    this.setKeyColour();
    this.setTheme();
  }
 
  getCategories = async tiles => {
   this.setState({ loading : true })
-  const res = await axios.get('https://seniors-coalition.herokuapp.com/tiles');
-  this.setState({ categories: res.data, loading: false });
+  const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
+  this.setState({ categories: res.data.data, loading: false });
   this.setKeyColour();
   this.setTheme();
  }
@@ -44,9 +44,9 @@ class App extends Component {
  // Get Subcategories for Category Pages
  getSubCategories = async category => {
    this.setState({ loading : true })
-   const res = await axios.get(`https://seniors-coalition.herokuapp.com/sub-categories?tiles.title=${category}`);
-   const ret = await axios.get('https://seniors-coalition.herokuapp.com/promotions');
-   this.setState({ subCategories: res.data, promotions: ret.data, loading: false });
+   const res = await axios.get(`https://seniors-coalition-admin.herokuapp.com/api/subcategories?filters[tile][Title]=${category}&populate=*`);
+   const ret = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/promotions?populate=*');
+   this.setState({ subCategories: res.data.data, promotions: ret.data.data, loading: false });
    if(this.state.subCategories.length === 0){
      window.location.replace("/404");
    }
@@ -58,9 +58,9 @@ class App extends Component {
  // Get Items for Subcategory Pages
  getItems = async subcategory => {
     this.setState({ loading : true })
-    const res = await axios.get(`https://seniors-coalition.herokuapp.com/items?sub_categories.url_eq=${subcategory}`);
-    const ret = await axios.get('https://seniors-coalition.herokuapp.com/promotions');
-    this.setState({ items: res.data, promotions: ret.data, loading: false });
+    const res = await axios.get(`https://seniors-coalition-admin.herokuapp.com/api/items?filters[subcategory][Url]=${subcategory}&populate=*`);
+    const ret = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/promotions?populate=*');
+    this.setState({ items: res.data.data, promotions: ret.data.data, loading: false });
     if(this.state.items.length === 0){
       window.location.replace("/404");
     }
@@ -69,26 +69,17 @@ class App extends Component {
     this.setTheme();
  }
 
- // Get Item Content For Pages
- getPageContent = async id => {
-   this.setState({ loading : true })
-   const res = await axios.get(`https://seniors-coalition.herokuapp.com/items/${id}`).then((res) => {
-     this.setState({ page: res.data, loading: false });
-   }).catch((error) => {
-     window.location.replace("/404");
-   })
-   this.setKeyColour();
-   this.setTheme();
- }
 
  // Set Key Colour Based on Navigational Position
  setKeyColour(){
   let pathnames = window.location.pathname.split('/').filter(x => x);
-  let currentCategory = (pathnames[0]);
+  let currentCategory = (pathnames[0])
+  const currentCategoryStructured = decodeURI(currentCategory)
   let category = this.state.categories;
-  const categories = category.map(x => x.title)
-  let categoryMatch = categories.indexOf(currentCategory)+1;
+  const categories = category.map(x => x.attributes.Title)
+  let categoryMatch = categories.indexOf(currentCategoryStructured)+1;
   this.setState({ keyColour: (categoryMatch) })
+    
  }
 
  // Match Key Colour to Theme
