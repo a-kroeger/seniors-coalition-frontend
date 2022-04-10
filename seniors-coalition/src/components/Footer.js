@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export class Footer extends Component {
 
@@ -28,6 +29,7 @@ export class Footer extends Component {
         return (
             <footer>
                 <div className="links">
+                    <Link to="contact">Contact Us</Link>
                     {this.state.links && <div className="link-grid">
                         {this.state.links.map(link =>
                             <a href={link.attributes.Url}>{link.attributes.Name}</a>

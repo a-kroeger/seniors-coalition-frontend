@@ -181,6 +181,9 @@ p.legend, .legend a {
 .about {
   margin-bottom: 50px;
 }
+.carousel.carousel-slider {
+  max-width: 400px !important;
+}
 
 /* Tile layout */
 .tiles {
@@ -458,6 +461,59 @@ p.legend, .legend a {
 }
 .promotion-link {
   color: #0075FE;
+}
+
+/* Contact Form */
+.contact-form {
+  margin: auto;
+  width: 60ch;
+  max-width: 80vw;
+}
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  border: #E4E4E4 3px solid;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.contact-form label {
+  margin-top: 25px;
+}
+.contact-form .submit {
+  width: 50%;
+  margin: auto;
+  margin-top: 60px;
+  background: #E4E4E4;
+  border: none;
+  padding: 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 200ms linear;
+}
+.submit:hover {
+  background: #fff;
+}
+.message {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  opacity: 0;
+  transition: height 1ms linear, opacity cubic-bezier(.33,1.11,.87,.93) 500ms;
+}
+.message > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.message.active {
+  height: 100%;
+  opacity: 1;
 }
 
 /* Footer */

@@ -6,6 +6,7 @@ import SubCategories from './components/SubCategories';
 import Items from './components/Items';
 import Page from './components/Page';
 import Footer from './components/Footer'
+import Contact from './components/Contact'
 import Error from './components/Error';
 import axios from 'axios';
 import './App.css';
@@ -144,12 +145,15 @@ class App extends Component {
                   />
                 )} />
             <Route exact path='/404'
-            render={props => (
-              <Error
-              {...props}
-              loading={this.state.loading}
-              />
+              render={props => (
+                <Error
+                {...props}
+                loading={this.state.loading}
+                />
             )} />
+            <Route exact path='/contact'>
+              <Contact />
+            </Route>
             <Route exact path='/:category'
                render={props => (
                   <SubCategories
