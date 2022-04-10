@@ -8,6 +8,7 @@ export class SubCategories extends Component {
     
     componentDidMount() {
         this.props.getSubCategories(this.props.match.params.category);
+        window.scrollTo(0, 0)
     }
     
     render (){

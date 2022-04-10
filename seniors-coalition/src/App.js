@@ -28,15 +28,16 @@ class App extends Component {
     error: false,
   };
 
-  // Get Tiles for Homepage
-//  async componentDidMount() {
-//    this.setState({ loading : true })
-//    const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
-//    this.setState({ categories: res.data.data, loading: false });
-//    this.setKeyColour();
-//    this.setTheme();
-//  }
+  // Set theme colour based on what page the user is on
+ async componentDidMount() {
+   this.setState({ loading : true })
+   const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
+   this.setKeyColour();
+   this.setState({ categories: res.data.data, loading: false });
+   this.setTheme();
+ }
 
+// Get tiles for homepage
  getCategories = async tiles => {
   this.setState({ loading : true })
     axios.get('https://seniors-coalition-admin.herokuapp.com/api/about')

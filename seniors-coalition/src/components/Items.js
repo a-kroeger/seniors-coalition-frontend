@@ -8,6 +8,7 @@ export class Items extends Component {
     
     componentDidMount() {
         this.props.getItems(this.props.match.params.subcategory);
+        window.scrollTo(0, 0)
     }
     
     render (){

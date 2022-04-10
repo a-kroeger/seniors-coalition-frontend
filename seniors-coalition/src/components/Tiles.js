@@ -8,6 +8,7 @@ export class Tiles extends Component {
 
     componentDidMount() {
         this.props.getCategories();
+        window.scrollTo(0, 0)
     }
 
     render (props){

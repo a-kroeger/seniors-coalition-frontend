@@ -14,6 +14,7 @@ export default function Page(props) {
     useEffect(() => {
         setLoading(true)
         const { id } = props.match.params
+        window.scrollTo(0, 0)
         axios.get(`https://seniors-coalition-admin.herokuapp.com/api/items?filters[id]=${id}&populate=*`)
             .then(res => {
                 const { attributes } = res.data.data[0]
