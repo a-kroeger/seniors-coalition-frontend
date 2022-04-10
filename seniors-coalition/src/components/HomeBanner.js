@@ -6,36 +6,16 @@ import ReactMarkdown from 'react-markdown';
 
 export class Homebanner extends Component {
 
-    state={
-        loading: false,
-        aboutText: '',
-        slides: [],
-        banner: {}
-    }
-
-    componentDidMount(){
-        this.setState({ loading : true })
-        axios.get('https://seniors-coalition-admin.herokuapp.com/api/about')
-            .then(res => { this.setState({ aboutText : res.data.data.attributes.CoverText }) })
-        axios.get('https://seniors-coalition-admin.herokuapp.com/api/banner')
-            .then(res => { this.setState({ banner : res.data.data.attributes }) })
-        axios.get('https://seniors-coalition-admin.herokuapp.com/api/gallery-images?populate=*')
-            .then(res => { this.setState({ slides : res.data.data })})
-        this.setState({ loading : false })
-    }
-
     render() {
-        if (this.state.loading) return <div className="banner"></div>
-
         return (
             <div className="banner">
                 <div className="col1">
                     <h1 className="site-header">Camrose Seniors Coalition</h1>
-                    {this.state.aboutText && <div className="about">
-                        {this.state.aboutText}
+                    {this.props.aboutText && <div className="about">
+                        {this.props.aboutText}
                     </div>}
-                    {this.state.slides && <Carousel>
-                        {this.state.slides.slice(0).reverse().map(slide => (
+                    {this.props.slides && <Carousel>
+                        {this.props.slides.slice(0).reverse().map(slide => (
                             <div key={slide.id}>
                                 <img src={slide.attributes.Image.data.attributes.formats.medium.url} />
                                 {slide.attributes.Link && <p className="legend">
@@ -45,9 +25,9 @@ export class Homebanner extends Component {
                         ))}
                     </Carousel>}
                 </div>
-                {this.state.banner.BannerText && <div className="col2">
-                    <h2 className="banner-title">{this.state.banner.Title}</h2>
-                    <ReactMarkdown className="banner-text" children={this.state.banner.BannerText}/>
+                {this.props.banner.BannerText && <div className="col2">
+                    <h2 className="banner-title">{this.props.banner.Title}</h2>
+                    <ReactMarkdown className="banner-text" children={this.props.banner.BannerText}/>
                 </div>}
             </div>
         )

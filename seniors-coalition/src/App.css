@@ -417,6 +417,7 @@ p.legend, .legend a {
   line-height: 1.7;
   min-width: 240px;
   max-width: 700px;
+  width: 80vw;
 }
 .custom-block li {
   left: -25px;

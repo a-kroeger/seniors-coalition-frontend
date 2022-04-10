@@ -20,22 +20,31 @@ class App extends Component {
     items: [],
     page: {},
     promotions: [],
+    aboutText: '',
+    slides: [],
+    banner: {},
     keyColour: 0,
     theme: null,
     error: false,
   };
 
   // Get Tiles for Homepage
- async componentDidMount() {
-   this.setState({ loading : true })
-   const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
-   this.setState({ categories: res.data.data, loading: false });
-   this.setKeyColour();
-   this.setTheme();
- }
+//  async componentDidMount() {
+//    this.setState({ loading : true })
+//    const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
+//    this.setState({ categories: res.data.data, loading: false });
+//    this.setKeyColour();
+//    this.setTheme();
+//  }
 
  getCategories = async tiles => {
   this.setState({ loading : true })
+    axios.get('https://seniors-coalition-admin.herokuapp.com/api/about')
+      .then(res => { this.setState({ aboutText : res.data.data.attributes.CoverText }) })
+      axios.get('https://seniors-coalition-admin.herokuapp.com/api/banner')
+      .then(res => { this.setState({ banner : res.data.data.attributes }) })
+      axios.get('https://seniors-coalition-admin.herokuapp.com/api/gallery-images?populate=*')
+  .then(res => { this.setState({ slides : res.data.data })})
   const res = await axios.get('https://seniors-coalition-admin.herokuapp.com/api/tiles');
   this.setState({ categories: res.data.data, loading: false });
   this.setKeyColour();
@@ -140,6 +149,9 @@ class App extends Component {
                     categories={this.state.categories} 
                     loading={this.state.loading}
                     links={this.state.categories}
+                    aboutText={this.state.aboutText}
+                    slides={this.state.slides}
+                    banner={this.state.banner}
                     keyColour={this.state.keyColour}
                     theme={this.state.theme}
                   />

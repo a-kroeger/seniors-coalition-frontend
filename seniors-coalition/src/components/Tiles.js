@@ -10,13 +10,17 @@ export class Tiles extends Component {
         this.props.getCategories();
     }
 
-    render (){
+    render (props){
         const { categories, loading,  } = this.props;
 
         if (loading) return <Spinner />;
 
         return <>
-            <HomeBanner />
+            <HomeBanner 
+                aboutText={this.props.aboutText}
+                slides={this.props.slides}
+                banner={this.props.banner}
+            />
             <div className="tiles">
                 <Helmet>
                     <title>Homepage | Seniors Coalition</title>       

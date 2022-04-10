@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 class Contact extends Component {
     constructor(props) {
@@ -74,6 +75,11 @@ class Contact extends Component {
     render() {
         return (
             <>
+            <Helmet>
+                    <title>Get in touch</title>
+                    <meta name="description" content="A member of our team would be happy to assist you."></meta>
+                    
+                </Helmet>
             <div className="contact-form">
                 <h1>Contact Us</h1>
                 <form id='form' onSubmit={this.handleSubmit}>
